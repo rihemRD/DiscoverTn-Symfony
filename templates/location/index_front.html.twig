@@ -1,0 +1,64 @@
+{% extends 'base-admin.html.twig' %}
+
+
+
+
+{% block title %}Hello EvenementController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+    <main id="main" class="main">
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Table with stripped rows -->
+                            <table class="table">
+                                <thead>
+                                <tr>
+      <th scope="col">ID</th>
+      <th scope="col">nom</th>
+      <th scope="col">type</th>
+      <th scope="col">lieu</th>
+      <th scope="col">numtel</th>
+      <th scope="col">heure</th>
+    </tr>
+                                </thead>
+                                <tbody>
+                                {% for data in List %}
+                                    <tr>
+      <th scope="row">{{data.id}}</th>
+      <td>{{data.nom}}</td>
+      <td>{{data.type}}</td>
+      <td>{{data.lieu}}</td>
+      <td>{{data.numtel}}</td>
+      <td>{{data.heure}}</td>
+      
+      <td><button type="button" class="btn btn-warning"><a style="color: #fff" href="{{ path('update',{'id':data.id}) }}">update</a></button></td>
+     <td><button type="button" class="btn btn-danger"><a style="color: #fff" href="{{ path('delete',{'id':data.id}) }}">Supprimer</a></button></td>
+       </tr>
+                                {% endfor %}
+
+
+                                </tbody>
+                            </table>
+                           
+
+
+
+                            <!-- End Table with stripped rows -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+{% endblock %}
