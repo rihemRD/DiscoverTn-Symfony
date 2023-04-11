@@ -1,0 +1,92 @@
+{% extends 'base-admin.html.twig' %}
+{% block body %}
+
+    <main id="main" class="main">
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-title">Modifier un Utilisateur</h1>
+                            {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        {{ form_label(form.nomUtilisateur,"Nom : ") }}
+                                    </td><td>
+                                        {{ form_widget(form.nomUtilisateur) }}
+                                    </td>
+                                    <td>{{ form_errors(form.nomUtilisateur) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {{ form_label(form.prenomUtilisateur,"Prenom : ") }}
+                                    </td><td>
+                                        {{ form_widget(form.prenomUtilisateur) }}
+                                    </td>
+                                    <td>{{ form_errors(form.prenomUtilisateur) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {{ form_label(form.emailUtilisateur,"Email : ") }}
+                                    </td><td>
+                                        {{ form_widget(form.emailUtilisateur) }}
+                                    </td>
+                                    <td>{{ form_errors(form.emailUtilisateur) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {{ form_label(form.loginUtilisateur,"login : ") }}
+                                    </td><td>
+                                        {{ form_widget(form.loginUtilisateur) }}
+                                    </td>
+                                    <td>{{ form_errors(form.loginUtilisateur) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {{ form_label(form.mdpUtilisateur,"Mot de passe : ") }}
+                                    </td><td>
+                                        {{ form_widget(form.mdpUtilisateur) }}
+                                    </td>
+                                    <td>{{ form_errors(form.mdpUtilisateur) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {{ form_label(form.imageUtilisateur,"Image : ") }}
+                                    </td><td>
+                                        {{ form_widget(form.imageUtilisateur) }}
+                                    </td>
+                                    <td>{{ form_errors(form.imageUtilisateur) }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        {{ form_label(form.telephoneUtilisateur,"Numero de telephone : ") }}
+                                    </td><td>
+                                        {{ form_widget(form.telephoneUtilisateur) }}
+                                    </td>
+                                    <td>{{ form_errors(form.telephoneUtilisateur) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {{ form_label(form.adresseUtilisateur,"Adresse Postale : ") }}
+                                    </td><td>
+                                        {{ form_widget(form.adresseUtilisateur) }}
+                                    </td>
+                                    <td>{{ form_errors(form.adresseUtilisateur) }}</td>
+                                </tr>
+                            </table>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+    {% endblock %}
+
+
+

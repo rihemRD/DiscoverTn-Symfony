@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="{{ asset('front/css/bootstrap.css') }}" rel='stylesheet' type='text/css' />
+        <link href="{{ asset('front/css/style.css') }}" rel='stylesheet' type='text/css' />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script src="{{ asset('') }}js/jquery.min.js"></script>
+        <!--<script src="js/jquery.easydropdown.js"></script>-->
+        <!--start slider -->
+        <link rel="stylesheet" href="{{ asset('front/css/fwslider.css') }}" media="all">
+        <script src="{{ asset('front/js/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('front/js/fwslider.js') }}"></script>
+        <!--end slider -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".dropdown img.flag").addClass("flagvisibility");
+
+                $(".dropdown dt a").click(function() {
+                    $(".dropdown dd ul").toggle();
+                });
+
+                $(".dropdown dd ul li a").click(function() {
+                    var text = $(this).html();
+                    $(".dropdown dt a span").html(text);
+                    $(".dropdown dd ul").hide();
+                    $("#result").html("Selected value is: " + getSelectedValue("sample"));
+                });
+
+                function getSelectedValue(id) {
+                    return $("#" + id).find("dt a span.value").html();
+                }
+
+                $(document).bind('click', function(e) {
+                    var $clicked = $(e.target);
+                    if (! $clicked.parents().hasClass("dropdown"))
+                        $(".dropdown dd ul").hide();
+                });
+
+
+                $("#flagSwitcher").click(function() {
+                    $(".dropdown img.flag").toggleClass("flagvisibility");
+                });
+            });
+        </script>
+    {% endblock %}
+
+    {% block javascripts %}
+
+    {% endblock %}
+</head>
+<body>
+{% block header %}
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="header-left">
+                        <div class="logo">
+                            <a href="index.html"><img src="images/logo.png" alt=""/></a>
+                        </div>
+                        <div class="menu">
+                            <a class="toggleMenu" href="#"><img src="images/nav.png" alt="" /></a>
+                            <ul class="nav" id="nav">
+                                <li><a href="{{ path('index_front') }}">Accueil</a></li>
+
+                                <li><a href="{{ path('AddReclamation')}}">Contact</a></li>
+                                <div class="clear"></div>
+                            </ul>
+                            <script type="text/javascript" src="js/responsive-nav.js"></script>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="header_right">
+                        <!-- start search-->
+                        <ul class="nav" >
+
+                        </ul>
+
+                        <ul class="icon1 sub-icon1 profile_img">
+                            <li><a class="active-icon c1" href="#"> </a>
+                                <ul class="sub-icon1 list">
+                                    <p>Bonjour  {{ user.nom }}</p>
+                                    <br>
+                                    <img src="{{"http:\\\\localhost\\"~user.imgpath| slice(16) }}" alt="Profile" style="width:50px ; border-radius: 50%" class="rounded-circle">
+
+                                    <div class="login_buttons">
+                                        <div class="check_button"><a href="{{ path('FuserUpdate') }}">Profile</a></div>
+                                        <div class="login_button"><a  href="{{ path('user_logout') }}">Logout</a></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+<div class="main">
+    <div class="shop_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="map">
+                        <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=690&amp;height=400&amp;hl=en&amp;q=Esprit School of Business&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://mcpepro.com/">Minecraft Download</a></div><style>.mapouter{position:relative;text-align:right;width:690px;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:600px;height:400px;}.gmap_iframe {width:690px!important;height:400px!important;}</style></div>                    </div>
+                </div>
+                <div class="col-md-5">
+                    <p class="m_8">L'École supérieure privée d'ingénierie et de technologie ou ESPRIT est une école d'ingénieurs privée de Tunisie basée à l'Ariana et agréée par le ministère de l'Enseignement supérieur et de la Recherche scientifique.</p>
+                    <div class="address">
+
+                        <p>Tunisia</p>
+                        <p>Phone:(216) 70 685 685</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="margin-left: 100px;margin-top: 15px">
+            <div class="card" style="height: 500px; width: 500px">
+                <div class="row" style="margin-inside: 5px">
+                    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+                    <div class="col-md-12">
+                        <input type="text" class="form-control"  value="{{ user.prenom }}" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" disabled>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" value="{{ user.nom }}" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" disabled>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" value="{{ user.email }}" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" disabled>
+                    </div>
+                        {{ form_widget(form.descriptionReclamation) }}
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-success">Envoyer</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button  type="button" class="btn btn-danger"><a style="color: #fff" href="{{ path('index_front')}}">Annuler</a></button>
+                        </div>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% block body %}
+
+{% endblock %}
+
+{% block footer %}
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <ul class="footer_box">
+                        <h4>Products</h4>
+                        <li><a href="#">Mens</a></li>
+                        <li><a href="#">Womens</a></li>
+                        <li><a href="#">Youth</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="footer_box">
+                        <h4>About</h4>
+                        <li><a href="#">Careers and internships</a></li>
+                        <li><a href="#">Sponserships</a></li>
+                        <li><a href="#">team</a></li>
+                        <li><a href="#">Catalog Request/Download</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="footer_box">
+                        <h4>Customer Support</h4>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping and Order Tracking</a></li>
+                        <li><a href="#">Easy Returns</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">Replacement Binding Parts</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="footer_box">
+
+                        <ul class="social">
+                            <li class="facebook"><a href="#"><span> </span></a></li>
+                            <li class="twitter"><a href="#"><span> </span></a></li>
+                            <li class="instagram"><a href="#"><span> </span></a></li>
+                            <li class="pinterest"><a href="#"><span> </span></a></li>
+                            <li class="youtube"><a href="#"><span> </span></a></li>
+                        </ul>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="row footer_bottom">
+                <div class="copy">
+                    <p>© 2014 Template by <a href="http://w3layouts.com" target="_blank">w3layouts</a></p>
+                </div>
+                <dl id="sample" class="dropdown">
+
+                    <dd>
+                        <ul>
+                            <li><a href="#">Australia<img class="flag" src="{{ asset('images/as.png') }}" alt="" /><span class="value">AS</span></a></li>
+                            <li><a href="#">Sri Lanka<img class="flag" src="{{ asset('images/srl.png') }}" alt="" /><span class="value">SL</span></a></li>
+                            <li><a href="#">Newziland<img class="flag" src="{{ asset('images/nz.png') }}" alt="" /><span class="value">NZ</span></a></li>
+                            <li><a href="#">Pakistan<img class="flag" src="{{ asset('images/pk.png') }}" alt="" /><span class="value">Pk</span></a></li>
+                            <li><a href="#">United Kingdom<img class="flag" src="{{ asset('images/uk.png') }}" alt="" /><span class="value">UK</span></a></li>
+                            <li><a href="#">United States<img class="flag" src="{{ asset('images/us.png') }}" alt="" /><span class="value">US</span></a></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

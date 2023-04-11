@@ -1,0 +1,58 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Hello EvenementController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+    <main id="main" class="main">
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Table with stripped rows -->
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Nom</th>
+
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Prenom</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for reclams in reclams %}
+                                    {% if reclams.etatReclamation=="Pending" %}
+                                    <tr>
+                                        <td>{{ reclams.nomUtilisateur |upper}}</td>
+                                        <td>{{ reclams.emailUtilisateur}}</td>
+                                        <td>{{ reclams.descriptionReclamation}}</td>
+                                        <td>{{ reclams.etatReclamation}}</td>
+
+                                        <td>
+                                            <button  type="button" class="btn btn-warning"><a style="color: #fff" href="{{ path('reply_reclam',{'id':reclams.idReclamation}) }}">Reply</a></button>
+                                            <button  type="button" class="btn btn-danger"><a style="color: #fff" href="{{ path('destroy_reclam',{'id':reclams.idReclamation}) }}">Supprimer</a></button>
+
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            {{ knp_pagination_render(reclams) }}
+                            <!-- End Table with stripped rows -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+{% endblock %}

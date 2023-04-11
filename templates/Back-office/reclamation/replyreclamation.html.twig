@@ -1,0 +1,25 @@
+{% extends 'base-admin.html.twig' %}
+{% block body %}
+    <main id="main" class="main">
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-title">Reply reclamation</h1>
+                            {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+                            <label>From:</label><br>
+                            <input type="text" class="text" value="amine.zarrouk@esprit.com"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" disabled><br>
+                            <label>To:</label><br>
+                            <input type="text" class="text" value="{{ to }}"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" disabled><br>
+                            <label>Body</label>
+                            {{ form_widget(form.body) }}
+                            {{ form_end(form) }}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main><!-- End #main -->
+{% endblock %}
