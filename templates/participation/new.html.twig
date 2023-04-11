@@ -1,0 +1,48 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}New Participation{% endblock %}
+{% block body %}
+<main id="main" class="main">
+		<section class="section">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Liste des campings</h1>
+
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+
+    <hr>
+    <div class="row">
+        {% for camping in campings %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img class="card-img-top" src="{{ camping.imagec }}" alt="{{ camping.nom }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ camping.nom }}</h5>
+                        <h5>{{camping.dateDebut ? camping.dateDebut|date('Y-m-d') : ''}}</h5>
+                        <h5>{{camping.dateFin ? camping.dateFin|date('Y-m-d') : '' }}</h5>
+                        <h5>{{ camping.periode }}</h5>
+                        <h5>{{ camping.prix }}</h5>
+                        <h5>{{ camping.lieux }}</h5>
+                        <p class="card-text">{{ camping.description }}</p>
+                        <a href="{{ path('app_participation_new', {'id': camping.idCamping}) }}" class="btn btn-primary">Participer</a>
+                    </div>
+                </div>
+            </div>
+        
+      {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+    </div>
+    <a href="{{ path('app_participation_index') }}">back to list</a>
+    </div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <main id="main" class="main">
+		<section class="section">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Edit Camping</h1>
+
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+
+    {{ include('camping/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_camping_index') }}">back to list</a>
+
+    {{ include('camping/_delete_form.html.twig') }}
+
+    </div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+{% endblock %}

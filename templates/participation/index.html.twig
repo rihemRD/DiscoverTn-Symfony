@@ -1,0 +1,58 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+		<section class="section">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Participation</h1>
+
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Refp</th>
+                <th>Nombre</th>
+                <th>Montant</th>
+                <th>Etat</th>
+                <th>DateParti</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for participation in participations %}
+            <tr>
+                <td>{{ participation.refp }}</td>
+                <td>{{ participation.nombre }}</td>
+                <td>{{ participation.montant }}</td>
+                <td>{{ participation.etat }}</td>
+                <td>{{ participation.dateParti ? participation.dateParti|date('Y-m-d') : '' }}</td>
+                <td>{{ participation.nom }}</td>
+                <td>
+                    <a href="{{ path('app_participation_show', {'idParti': participation.idParti}) }}">show</a>
+                    <a href="{{ path('app_participation_edit', {'idParti': participation.idParti}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_participation_liste') }}">Create new</a>
+    </div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+{% endblock %}

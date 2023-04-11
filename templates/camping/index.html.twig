@@ -1,0 +1,134 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+table {
+    color: #737373;
+    margin: 0 0 1.5em;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-width: 1px 0 0 1px;
+    width: 100%;
+    font-size: 15px;
+}
+table thead tr {
+    background-color: #262626;
+}
+table thead tr th {
+    color: #383838;
+}
+table.table {
+    color: #737373;
+}
+
+th {
+    border-width: 0 1px 1px 0;
+    font-weight: 700;
+}
+
+td {
+    border-width: 0 1px 1px 0;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+th, td {
+    padding: 8px;
+}
+
+/* Style the "Create new" button */
+a.create-new {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+a.create-new:hover {
+  background-color: #3e8e41;
+}
+
+/* Style the "show" and "edit" links */
+.social-links a {
+    font-size: 16px;
+    color: #404040;
+    -webkit-transition: color 0.4s;
+    -moz-transition: color 0.4s;
+    -ms-transition: color 0.4s;
+    -o-transition: color 0.4s;
+    transition: color 0.4s;
+}
+
+a.show:hover, a.edit:hover {
+  background-color: #ddd;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+		<section class="section">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Camping</h1>
+
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>DateDebut</th>
+                <th>DateFin</th>
+                <th>Periode</th>
+                <th>Prix</th>
+                <th>Lieux</th>
+                <th>Description</th>
+                <th>Imagec</th>
+                <th>Nbr_place</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for camping in campings %}
+            <tr>
+                <td>{{ camping.nom }}</td>
+                <td>{{ camping.dateDebut ? camping.dateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ camping.dateFin ? camping.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ camping.periode }}</td>
+                <td>{{ camping.prix }}</td>
+                <td>{{ camping.lieux }}</td>
+                <td>{{ camping.description }}</td>
+                <td>{{ camping.imagec }}</td>
+                <td>{{ camping.nbrPlace }}</td>
+                <td>
+                    <a href="{{ path('app_camping_show', {'idCamping': camping.idCamping}) }}">show</a>
+                    <a href="{{ path('app_camping_edit', {'idCamping': camping.idCamping}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_camping_new') }}">Create new</a>
+    <a href="{{ path('app_participation_index') }}">check participation</a>
+
+    </div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+{% endblock %}
